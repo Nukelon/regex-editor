@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>正则表达式可视化编辑器</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>正则表达式可视化编辑器</h1>
+      <p>
+        在输入框中编写正则表达式，实时查看匹配结果、分组信息与错误提示。
+        右侧提供完整的语法速查表。
+      </p>
+    </header>
+    <main>
+      <section class="editor" aria-label="正则表达式编辑区域">
+        <div class="field-group">
+          <label for="pattern">正则表达式</label>
+          <div class="regex-inputs">
+            <span class="delimiter">/</span>
+            <input id="pattern" type="text" placeholder="例如：^\\w+@\\w+\\.com$" />
+            <span class="delimiter">/</span>
+            <input
+              id="flags"
+              type="text"
+              maxlength="6"
+              placeholder="flags"
+              aria-label="标志"
+            />
+          </div>
+        </div>
+        <div class="field-group">
+          <label for="testString">测试文本</label>
+          <textarea
+            id="testString"
+            rows="8"
+            placeholder="在这里粘贴测试文本，匹配内容会高亮显示"
+          ></textarea>
+        </div>
+        <div class="feedback" role="status" aria-live="polite"></div>
+        <div class="results" aria-label="匹配结果">
+          <h2>匹配高亮</h2>
+          <div class="match-visual" id="matchOutput"></div>
+          <h2>匹配详情</h2>
+          <div id="matchDetails" class="match-details"></div>
+        </div>
+      </section>
+      <aside class="reference" aria-label="正则表达式语法速查">
+        <h2>语法速查表</h2>
+        <div class="reference-grid">
+          <section>
+            <h3>字符匹配</h3>
+            <ul>
+              <li><code>.</code> 任意字符（除换行）</li>
+              <li><code>\w</code> 字母、数字或下划线</li>
+              <li><code>\W</code> 非字母、数字或下划线</li>
+              <li><code>\d</code> 数字</li>
+              <li><code>\D</code> 非数字</li>
+              <li><code>\s</code> 空白符</li>
+              <li><code>\S</code> 非空白符</li>
+              <li><code>[abc]</code> 字符集合</li>
+              <li><code>[^abc]</code> 取反集合</li>
+              <li><code>[a-z]</code> 字符范围</li>
+            </ul>
+          </section>
+          <section>
+            <h3>量词</h3>
+            <ul>
+              <li><code>*</code> 重复 0 次或多次</li>
+              <li><code>+</code> 重复 1 次或多次</li>
+              <li><code>?</code> 重复 0 次或 1 次</li>
+              <li><code>{n}</code> 重复 n 次</li>
+              <li><code>{n,}</code> 重复至少 n 次</li>
+              <li><code>{n,m}</code> 重复 n 到 m 次</li>
+              <li><code>*?</code> 非贪婪量词（其它量词同理）</li>
+            </ul>
+          </section>
+          <section>
+            <h3>位置锚点</h3>
+            <ul>
+              <li><code>^</code> 行首</li>
+              <li><code>$</code> 行尾</li>
+              <li><code>\b</code> 单词边界</li>
+              <li><code>\B</code> 非单词边界</li>
+              <li><code>\A</code> 文本开头</li>
+              <li><code>\Z</code> 文本结尾</li>
+            </ul>
+          </section>
+          <section>
+            <h3>分组与引用</h3>
+            <ul>
+              <li><code>(...)</code> 捕获分组</li>
+              <li><code>(?:...)</code> 非捕获分组</li>
+              <li><code>(?&lt;name&gt;...)</code> 命名分组</li>
+              <li><code>\1</code>、<code>\k&lt;name&gt;</code> 反向引用</li>
+              <li><code>(?=...)</code> 正向先行断言</li>
+              <li><code>(?!...)</code> 负向先行断言</li>
+              <li><code>(?&lt;=...)</code> 正向后行断言</li>
+              <li><code>(?&lt;!...)</code> 负向后行断言</li>
+            </ul>
+          </section>
+          <section>
+            <h3>标志</h3>
+            <ul>
+              <li><code>g</code> 全局匹配</li>
+              <li><code>i</code> 忽略大小写</li>
+              <li><code>m</code> 多行模式</li>
+              <li><code>s</code> 允许 <code>.</code> 匹配换行</li>
+              <li><code>u</code> Unicode 模式</li>
+              <li><code>y</code> sticky 模式</li>
+            </ul>
+          </section>
+          <section>
+            <h3>其它</h3>
+            <ul>
+              <li><code>(?# comment)</code> 注释</li>
+              <li><code>(?&gt;...)</code> 原子分组</li>
+              <li><code>(?(condition)yes|no)</code> 条件判断</li>
+              <li><code>(?imsu)</code> 内联标志</li>
+            </ul>
+          </section>
+        </div>
+      </aside>
+    </main>
+    <footer>
+      <p>
+        支持现代浏览器原生正则引擎，GitHub Pages 上即可直接使用。
+      </p>
+    </footer>
+    <script src="script.js" defer></script>
+  </body>
+</html>

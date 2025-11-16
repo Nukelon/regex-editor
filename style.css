@@ -87,7 +87,7 @@ label {
 
 .regex-inputs {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto 1fr auto auto auto;
   align-items: center;
   gap: 0.4rem;
   font-size: 1.05rem;
@@ -108,6 +108,29 @@ label {
 
 .regex-inputs input::placeholder {
   color: var(--text-muted);
+}
+
+.regex-inputs button {
+  border: none;
+  background-color: var(--primary);
+  color: #fff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 10px;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.regex-inputs button:hover,
+.regex-inputs button:focus {
+  background-color: var(--primary-strong);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.regex-inputs button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.25);
 }
 
 textarea {

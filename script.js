@@ -4,6 +4,7 @@ const testInput = document.getElementById("testString");
 const feedback = document.querySelector(".feedback");
 const matchOutput = document.getElementById("matchOutput");
 const matchDetails = document.getElementById("matchDetails");
+const escapePatternButton = document.getElementById("escapePattern");
 
 const DEFAULT_PATTERN = "(?<user>\\w+)@(?<domain>\\w+\\.com)";
 const DEFAULT_TEST = `用户邮箱列表：\nalpha@example.com\nbeta@example.com\ninvalid@domain`;
@@ -48,6 +49,10 @@ function highlightMatches(text, regex) {
   }
 
   return parts.join("");
+}
+
+function escapeRegexLiteral(value) {
+  return value.replace(/[\\^$.*+?()[\]{}|]/g, "\\$&");
 }
 
 function renderMatchDetails(text, regex) {
@@ -137,5 +142,12 @@ function init() {
 patternInput.addEventListener("input", updateView);
 flagsInput.addEventListener("input", updateView);
 testInput.addEventListener("input", updateView);
+escapePatternButton.addEventListener("click", () => {
+  patternInput.value = escapeRegexLiteral(patternInput.value);
+  updateView();
+  patternInput.focus();
+  const length = patternInput.value.length;
+  patternInput.setSelectionRange(length, length);
+});
 
 document.addEventListener("DOMContentLoaded", init);
